@@ -11,14 +11,14 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class _Default
+Partial Public Class SiteMaster
     
     '''<summary>
-    '''Control gdvTareas.
+    '''Control MainContent.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents gdvTareas As Global.DevExpress.Web.ASPxGridView
+    Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class
