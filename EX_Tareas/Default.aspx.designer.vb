@@ -21,4 +21,103 @@ Partial Public Class _Default
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents gdvTareas As Global.DevExpress.Web.ASPxGridView
+    
+    '''<summary>
+    '''Control tarea.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tarea As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
+    '''Control tipoTarea.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tipoTarea As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control prioridad.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents prioridad As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control fechaInicio.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents fechaInicio As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    
+    '''<summary>
+    '''Control fechaFinal.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents fechaFinal As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    
+    '''<summary>
+    '''Control usuarios.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents usuarios As Global.System.Web.UI.WebControls.ListBox
+    
+    '''<summary>
+    '''Control descripcion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents descripcion As Global.System.Web.UI.HtmlControls.HtmlTextArea
+    
+    '''<summary>
+    '''Control proceso.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents proceso As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
+    '''Control resultado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents resultado As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control tiempoEstimado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tiempoEstimado As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    
+    '''<summary>
+    '''Control Button1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
 End Class
