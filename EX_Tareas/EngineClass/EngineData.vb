@@ -14,5 +14,14 @@
 
     Public Shared cadenaConexion As String = ConfigurationManager.ConnectionStrings("CnxTareas").ToString()
 
+    Public Shared Property TareaTipo As New Dictionary(Of String, Integer)
+
+    Public Shared Property TareaEstado As New Dictionary(Of String, Integer)
+
+    Public Shared Property TareaTipoServicio As New Dictionary(Of String, Integer)
+
+    Public Shared Property TareaValor As New Dictionary(Of String, Integer)
+
+
 
 End Class

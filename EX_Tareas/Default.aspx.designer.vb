@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class _Default
     
     '''<summary>
-    '''Control gdvTareas.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents gdvTareas As Global.DevExpress.Web.ASPxGridView
-    
-    '''<summary>
     '''Control tarea.
     '''</summary>
     '''<remarks>
@@ -41,13 +32,31 @@ Partial Public Class _Default
     Protected WithEvents tipoTarea As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''Control prioridad.
+    '''Control estadoTarea.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents prioridad As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents estadoTarea As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control tipoServicio.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tipoServicio As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control tareaValor.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tareaValor As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''Control fechaInicio.
@@ -68,15 +77,6 @@ Partial Public Class _Default
     Protected WithEvents fechaFinal As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
     
     '''<summary>
-    '''Control usuarios.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents usuarios As Global.System.Web.UI.WebControls.ListBox
-    
-    '''<summary>
     '''Control descripcion.
     '''</summary>
     '''<remarks>
@@ -84,24 +84,6 @@ Partial Public Class _Default
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents descripcion As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
-    '''<summary>
-    '''Control proceso.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents proceso As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
-    '''<summary>
-    '''Control resultado.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents resultado As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''Control tiempoEstimado.
@@ -120,4 +102,13 @@ Partial Public Class _Default
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control gdvTareas.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gdvTareas As Global.DevExpress.Web.ASPxGridView
 End Class

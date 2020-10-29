@@ -3,27 +3,24 @@ Imports DevExpress.Web
 
 Public Class Utilidad
 
-    Public Function PrioridadItems(ByVal list As DropDownList) As DropDownList
-        list.Items.Clear()
-        list.Items.Add("Alta")
-        list.Items.Add("Media")
-        list.Items.Add("Baja")
-        Return list
-    End Function
 
-    Public Function AddItemsList(ByVal list As DropDownList, ByVal tipo As String) As DropDownList
+    Public Function AddItemsListTareas(ByVal list As DropDownList) As DropDownList
         list.Items.Clear()
+        EngineData.TareaTipo.Clear()
         Dim cnx As String = EngineData.cadenaConexion
-        Dim query As String = QueryItems(tipo)
+        Dim query As String = "SELECT  Tipo, IdTipoTarea  FROM A_TareaTipo WHERE Activo = @Activo"
         Dim conexion As SqlConnection = New SqlConnection(cnx)
 
         Using conexion
             conexion.Open()
             Dim comando = New SqlCommand(query, conexion)
             comando.CommandType = CommandType.Text
+            comando.Parameters.Clear()
+            comando.Parameters.AddWithValue("@Activo", True)
             Dim lector As SqlDataReader = comando.ExecuteReader()
             While lector.Read()
                 list.Items.Add(lector.GetString(0))
+                EngineData.TareaTipo.Add(lector.GetString(0), lector.GetInt64(1))
             End While
             conexion.Close()
         End Using
@@ -31,19 +28,23 @@ Public Class Utilidad
         Return list
     End Function
 
-    Public Function AddItemsList(ByVal list As ListBox, ByVal tipo As String) As ListBox
+    Public Function AddItemsListServicios(ByVal list As DropDownList) As DropDownList
         list.Items.Clear()
+        EngineData.TareaTipoServicio.Clear()
         Dim cnx As String = EngineData.cadenaConexion
-        Dim query As String = QueryItems(tipo)
+        Dim query As String = "SELECT TipoServicio, IdTipoServicio FROM A_TareaTipoServicio WHERE Activo = @Activo"
         Dim conexion As SqlConnection = New SqlConnection(cnx)
 
         Using conexion
             conexion.Open()
             Dim comando = New SqlCommand(query, conexion)
             comando.CommandType = CommandType.Text
+            comando.Parameters.Clear()
+            comando.Parameters.AddWithValue("@Activo", True)
             Dim lector As SqlDataReader = comando.ExecuteReader()
             While lector.Read()
                 list.Items.Add(lector.GetString(0))
+                EngineData.TareaTipoServicio.Add(lector.GetString(0), lector.GetInt64(1))
             End While
             conexion.Close()
         End Using
@@ -51,18 +52,62 @@ Public Class Utilidad
         Return list
     End Function
 
-    Public Function QueryItems(ByVal tipo As String) As String
-        Dim query As String = String.Empty
 
-        If (tipo = "tareas") Then
-            query = "SELECT  Tipo FROM A_TareaTipo"
-        ElseIf (tipo = "usuarios") Then
-            query = "SELECT  UserName FROM A_Usuarios"
-        ElseIf (tipo = "resultados") Then
-            query = "SELECT Valor FROM A_TareaValor WHERE Tipo = 'Resultado'"
-        End If
+    Public Function AddItemsListEstados(ByVal list As DropDownList) As DropDownList
+        list.Items.Clear()
+        EngineData.TareaEstado.Clear()
+        Dim cnx As String = EngineData.cadenaConexion
+        Dim query As String = "SELECT Estado, IdEstadoTarea  FROM A_TareaEstado WHERE Activo = @Activo"
+        Dim conexion As SqlConnection = New SqlConnection(cnx)
 
-        Return query
+        Using conexion
+            conexion.Open()
+            Dim comando = New SqlCommand(query, conexion)
+            comando.CommandType = CommandType.Text
+            comando.Parameters.Clear()
+            comando.Parameters.AddWithValue("@Activo", True)
+            Dim lector As SqlDataReader = comando.ExecuteReader()
+            While lector.Read()
+                list.Items.Add(lector.GetString(0))
+                EngineData.TareaEstado.Add(lector.GetString(0), lector.GetInt64(1))
+            End While
+            conexion.Close()
+        End Using
+
+        Return list
+    End Function
+
+    Public Function AddItemsListValores(ByVal list As DropDownList) As DropDownList
+        list.Items.Clear()
+        EngineData.TareaValor.Clear()
+        Dim cnx As String = EngineData.cadenaConexion
+        Dim query As String = "SELECT Valor, Id FROM A_TareaValor WHERE Tipo = @Tipo"
+        Dim conexion As SqlConnection = New SqlConnection(cnx)
+
+        Using conexion
+            conexion.Open()
+            Dim comando = New SqlCommand(query, conexion)
+            comando.CommandType = CommandType.Text
+            comando.Parameters.Clear()
+            comando.Parameters.AddWithValue("@Tipo", "Resultado")
+            Dim lector As SqlDataReader = comando.ExecuteReader()
+            While lector.Read()
+                list.Items.Add(lector.GetString(0))
+                EngineData.TareaValor.Add(lector.GetString(0), lector.GetInt32(1))
+            End While
+            conexion.Close()
+        End Using
+
+        Return list
+    End Function
+
+    Public Function IdValue(ByVal objeto As Dictionary(Of String, Integer), ByVal key As String) As Integer
+        For Each x As KeyValuePair(Of String, Integer) In objeto
+            If x.Key = key Then
+                Return x.Value
+            End If
+        Next
+        Return -1
     End Function
 
 
