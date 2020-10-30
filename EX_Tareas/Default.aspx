@@ -51,13 +51,13 @@
 
  
 
-    <div  style="width:auto;background-color:whitesmoke;height:50%;">
+       <div  style="width:auto;background-color:whitesmoke;height:50%;">
            <div>
                <input type="button" id="nuevo" name="nuevo" value="Nueva" onclick="MostrarNuevaTareaPopUp()" style  ="background-color:forestgreen;width:150px;border:0px;color:white;"/>
           </div>
         
         <dx:ASPxGridView ID="gdvTareas" runat="server" KeyFieldName="IdTarea" Width="100%" 
-         AutoGenerateColumns="false"
+         AutoGenerateColumns="true"
          nHeaderFilterFillItems="gdvTareas_HeaderFilterFillItems" 
          EnableRowsCache="true" 
          ClientInstanceName="gdvTareas"
@@ -157,38 +157,26 @@
                       <a href="/Views/Actividad/List?id=<%# Eval("IdTarea") %>" > <%# Container.Text %> </a>
                 </DataItemTemplate>
               </dx:GridViewDataColumn>
+
           </Columns>
    
          <SettingsDataSecurity AllowEdit="true" AllowDelete="true"/>
+        
         <EditFormLayoutProperties>
             <SettingsAdaptivity AdaptivityMode="SingleColumnWindowLimit" SwitchToSingleColumnAtWindowInnerWidth="700" />
         </EditFormLayoutProperties>
 
-        <SettingsSearchPanel Visible="True" ShowApplyButton="True" ShowClearButton="True" />
-        <Settings ShowFooter="true" ShowHeaderFilterButton="true" />
-        <SettingsPopup>
-          <HeaderFilter Height="200">
-             <SettingsAdaptivity Mode="OnWindowInnerWidth" SwitchAtWindowInnerWidth="768" MinHeight="300" />
-          </HeaderFilter>
-        </SettingsPopup>
-
+            <SettingsSearchPanel Visible="True" ShowApplyButton="True" ShowClearButton="True" />
+               <SettingsPager PageSize="10">
+               </SettingsPager>
+              <Settings ShowFooter="true" ShowHeaderFilterButton="true" />
+              <SettingsPopup>
+                  <HeaderFilter Height="200">
+                     <SettingsAdaptivity Mode="OnWindowInnerWidth" SwitchAtWindowInnerWidth="768" MinHeight="300" />
+                 </HeaderFilter>
+            </SettingsPopup>
 
         </dx:ASPxGridView>
-        
     </div>
-    <br />
-
-
-  
-
-    <script>
-         var now = new Date();
-         var day = ("0" + now.getDate()).slice(-2);
-         var month = ("0" + (now.getMonth() + 1)).slice(-2);
-         var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-         $('#MainContent_fechaInicio').val(today);
-         $('#MainContent_fechaFinal').val(today);
-
-    </script>
         
 </asp:Content>
