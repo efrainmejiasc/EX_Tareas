@@ -198,6 +198,7 @@ function EditRow(idTareaPlantilla) {
         dataType: "json",
         success: function (x) {
             var m = JSON.parse(x.d);
+            console.log(m.FechaInicio);
             $('#MainContent_tarea').val(m.Tarea);
             $('#MainContent_tipoTarea').val(m.TipoTarea);
             $('#MainContent_estadoTarea').val(m.EstadoTarea);

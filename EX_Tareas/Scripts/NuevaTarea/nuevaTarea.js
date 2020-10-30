@@ -21,3 +21,4 @@ function ActualizarFechas() {
     $('#MainContent_fechaInicio').val(today);
     $('#MainContent_fechaFinal').val(today);
 }
+

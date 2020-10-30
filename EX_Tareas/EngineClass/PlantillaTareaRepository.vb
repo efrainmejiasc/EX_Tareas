@@ -143,28 +143,23 @@ Public Class PlantillaTareaRepository
             comando.Parameters.Clear()
             comando.Parameters.AddWithValue("@IdTarea", idTarea)
             Dim lector As SqlDataReader = comando.ExecuteReader()
-            Try
-                While lector.Read()
-                    m.IdTarea = lector.GetString(0)
-                    m.Tarea = lector.GetString(1)
-                    m.IdTipoTarea = lector.GetInt64(2)
-                    m.TipoTarea = lector.GetString(3)
-                    m.IdEstadoTarea = lector.GetInt64(4)
-                    m.EstadoTarea = lector.GetString(5)
-                    m.IdTipoServicio = lector.GetInt64(6)
-                    m.TipoServicio = lector.GetString(7)
-                    m.IdTareaValor = lector.GetInt64(8)
-                    m.TareaValor = lector.GetString(9)
-                    m.FechaInicio = lector.GetDateTime(10)
-                    m.FechaFinal = lector.GetDateTime(11)
-                    m.Descripcion = lector.GetString(12)
-                    m.TiempoEstimado = lector.GetDecimal(13)
-                    m.Orden = lector.GetInt32(14)
-                End While
-            Catch ex As Exception
-                Dim excep = ex.ToString()
-            End Try
-
+            While lector.Read()
+                m.IdTarea = lector.GetString(0)
+                m.Tarea = lector.GetString(1)
+                m.IdTipoTarea = lector.GetInt64(2)
+                m.TipoTarea = lector.GetString(3)
+                m.IdEstadoTarea = lector.GetInt64(4)
+                m.EstadoTarea = lector.GetString(5)
+                m.IdTipoServicio = lector.GetInt64(6)
+                m.TipoServicio = lector.GetString(7)
+                m.IdTareaValor = lector.GetInt64(8)
+                m.TareaValor = lector.GetString(9)
+                m.FechaInicio = lector.GetDateTime(10)
+                m.FechaFinal = lector.GetDateTime(11)
+                m.Descripcion = lector.GetString(12)
+                m.TiempoEstimado = lector.GetDecimal(13)
+                m.Orden = lector.GetInt32(14)
+            End While
             conexion.Close()
         End Using
 
