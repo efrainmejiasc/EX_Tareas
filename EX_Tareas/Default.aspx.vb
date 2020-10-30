@@ -39,6 +39,7 @@ Public Class _Default
         m.FechaFinal = fechaFinal.Value
         m.Descripcion = descripcion.Value
         m.TiempoEstimado = Convert.ToDecimal(tiempoEstimado.Value.Replace(",", "."))
+        m.Orden = orden.Value
 
         Dim util = New Utilidad()
         m.IdTipoTarea = util.IdValue(EngineData.TareaTipo, m.TipoTarea)

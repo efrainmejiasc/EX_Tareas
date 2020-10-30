@@ -4,7 +4,14 @@
 });
 
 
-function MostrarNuevaTareaPopUp(idTareaPlantilla) { 
+function MostrarNuevaTareaPopUp(idTareaPlantilla) {
+    if (idTareaPlantilla === '') {
+        $('#MainContent_orden').hide();
+        $('#lblOrden').hide()
+    } else {
+        $('#MainContent_orden').show();
+        $('#lblOrden').show()
+    }
     $('#MainContent_idTareaPlantilla').val(idTareaPlantilla)
     $('#nuevaTarea').show();
 }

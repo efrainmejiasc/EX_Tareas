@@ -43,6 +43,9 @@
 
             <label>Tiempo Estimado</label>
             <input type="number" id="tiempoEstimado" name="tiempoEstimado"  runat="server" min="0.5" max="100000" step="0.5"/> <br />   
+
+            <label id="lblOrden">Orden</label>
+            <input type="number" id="orden" name="orden"  runat="server" min="1" max="100" step="1"/> <br />  
                 
             <asp:Button ID="Button1" runat="server" Text="Guardar" />
 
@@ -208,6 +211,7 @@ function EditRow(idTareaPlantilla) {
             $('#MainContent_fechaFinal').val(m.FechaFinal);
             $('#MainContent_descripcion').val(m.Descripcion);
             $('#MainContent_tiempoEstimado').val(m.TiempoEstimado);
+             $('#MainContent_orden').val(m.orden);
         },
         complete: function () {
             MostrarNuevaTareaPopUp(idTareaPlantilla);

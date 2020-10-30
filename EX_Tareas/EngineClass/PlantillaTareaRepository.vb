@@ -69,7 +69,7 @@ Public Class PlantillaTareaRepository
 
     Public Function ActualizarTarea(ByVal m As NuevaTarea) As Boolean
         Dim cnx As String = EngineData.cadenaConexion
-        Dim query As String = "UPDATE  A_PlantillaTarea SET Tarea = @Tarea, IdTipoTarea = @IdTipoTarea, IdEstadoTarea = @IdEstadoTarea, IdTipoServicio = @IdTipoServicio, IdTareaValor = @IdTareaValor, FechaInicio = @FechaInicio
+        Dim query As String = "UPDATE  A_PlantillaTarea SET Tarea = @Tarea, IdTipoTarea = @IdTipoTarea, IdEstadoTarea = @IdEstadoTarea, IdTipoServicio = @IdTipoServicio, IdTareaValor = @IdTareaValor, FechaInicio = @FechaInicio,
                                        FechaFin = @FechaFin, Descripcion = @Descripcion, TiempoEstimado = @TiempoEstimado, Orden = @Orden WHERE IdTarea = @IdTarea"
         Dim conexion As SqlConnection = New SqlConnection(cnx)
         Dim utilidad As Utilidad = New Utilidad()
@@ -89,7 +89,7 @@ Public Class PlantillaTareaRepository
             comando.Parameters.AddWithValue("@Descripcion", m.Descripcion)
             comando.Parameters.AddWithValue("@FechaModifica", DateTime.Now)
             comando.Parameters.AddWithValue("@TiempoEstimado", m.TiempoEstimado)
-            comando.Parameters.AddWithValue("@Orden", OrdenTarea())
+            comando.Parameters.AddWithValue("@Orden", m.Orden)
             comando.ExecuteNonQuery()
             conexion.Close()
         End Using
