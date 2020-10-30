@@ -1,5 +1,7 @@
-﻿Imports DevExpress.Utils
+﻿Imports System.Web.Script.Services
+Imports DevExpress.Utils
 Imports DevExpress.Web
+Imports Newtonsoft.Json
 
 Public Class _Default
     Inherits Page
@@ -27,6 +29,7 @@ Public Class _Default
 
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim m = New NuevaTarea()
+        m.IdTarea = idTareaPlantilla.Value
         m.Tarea = tarea.Value
         m.TipoTarea = tipoTarea.SelectedItem.ToString()
         m.EstadoTarea = estadoTarea.SelectedItem.ToString()
@@ -44,7 +47,7 @@ Public Class _Default
         m.IdTareaValor = util.IdValue(EngineData.TareaValor, m.TareaValor)
 
         Dim plantillaTareaRepository = New PlantillaTareaRepository()
-        Dim result As Boolean = plantillaTareaRepository.InsertNuevaTarea(m)
+        Dim result As Boolean = If(m.IdTarea = String.Empty, plantillaTareaRepository.InsertNuevaTarea(m), plantillaTareaRepository.ActualizarTarea(m))
         CargarGrid()
         ClearFormNuevaTarea()
     End Sub
@@ -69,24 +72,6 @@ Public Class _Default
         End If
     End Sub
 
-    Protected Sub gdvTareas_RowUpdating(sender As Object, e As Data.ASPxDataUpdatingEventArgs) Handles gdvTareas.RowUpdating
-        'Dim i As OrderedDictionary = e.OldValues
-        'Dim j As OrderedDictionary = e.NewValues
-        Dim plantillaTareaRepository = New PlantillaTareaRepository()
-        'Dim m = New NuevaTarea With {
-        '.IdTarea = e.OldValues("IdTarea").ToString(),
-        'rea = e.NewValues("Tarea").ToString(),
-        '.FechaInicio = Convert.ToDateTime(e.NewValues("FechaInicio")),
-        '.FechaFinal = Convert.ToDateTime(e.NewValues("FechaFinal")),
-        '.Descripcion = e.NewValues("Descripcion").ToString(),
-        '.Resultado = resultado.SelectedItem.ToString(),
-        '.TiempoEstimado = Convert.ToDecimal(e.NewValues("TiempoEstimado"))
-        ' }
-
-        e.Cancel = True
-        gdvTareas.CancelEdit()
-    End Sub
-
     Protected Sub gdvTareas_RowDeleting(sender As Object, e As Data.ASPxDataDeletingEventArgs) Handles gdvTareas.RowDeleting
         Dim idTarea As String = e.Values("IdTarea").ToString()
         Dim plantillaTareaRepository = New PlantillaTareaRepository()
@@ -94,4 +79,13 @@ Public Class _Default
         e.Cancel = True
         CargarGrid()
     End Sub
+
+    <System.Web.Services.WebMethod()>
+    Public Shared Function DatosTareaPlantilla(ByVal idTareaPlantilla As String) As String
+        Dim plantillaTareaRepository = New PlantillaTareaRepository()
+        Dim tarea = plantillaTareaRepository.GetTarea(idTareaPlantilla)
+        Dim result = JsonConvert.SerializeObject(tarea)
+        Return result
+    End Function
+
 End Class

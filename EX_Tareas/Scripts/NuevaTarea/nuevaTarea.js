@@ -4,7 +4,8 @@
 });
 
 
-function MostrarNuevaTareaPopUp() {
+function MostrarNuevaTareaPopUp(idTareaPlantilla) { 
+    $('#MainContent_idTareaPlantilla').val(idTareaPlantilla)
     $('#nuevaTarea').show();
 }
 
