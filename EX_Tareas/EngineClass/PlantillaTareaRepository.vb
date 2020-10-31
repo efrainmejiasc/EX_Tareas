@@ -23,7 +23,7 @@ Public Class PlantillaTareaRepository
         Return "SELECT PT.IdTarea, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
                        PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
 		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
-		               PT.FechaInicio,PT.FechaFin,PT.Descripcion,PT.TiempoEstimado,PT.Orden
+		               PT.FechaInicio,PT.FechaFin,PT.Descripcion, CAST(PT.TiempoEstimado AS DECIMAL(10,2)) AS TiempoEstimado,PT.Orden
                FROM A_PlantillaTarea AS PT 
                INNER JOIN A_TareaTipo AS TT ON PT.IdTipoTarea = TT.IdTipoTarea
                INNER JOIN A_TareaEstado AS TE ON PT.IdEstadoTarea =TE.IdEstadoTarea
@@ -170,7 +170,7 @@ Public Class PlantillaTareaRepository
         Return "SELECT PT.IdTarea, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
                        PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
 		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
-		               PT.FechaInicio,PT.FechaFin,PT.Descripcion,PT.TiempoEstimado,PT.Orden
+		               PT.FechaInicio,PT.FechaFin,PT.Descripcion, CAST(PT.TiempoEstimado AS DECIMAL(10,2)) AS TiempoEstimado,PT.Orden
                FROM A_PlantillaTarea AS PT 
                INNER JOIN A_TareaTipo AS TT ON PT.IdTipoTarea = TT.IdTipoTarea
                INNER JOIN A_TareaEstado AS TE ON PT.IdEstadoTarea =TE.IdEstadoTarea

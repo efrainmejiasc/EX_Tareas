@@ -38,7 +38,7 @@ Public Class _Default
         m.FechaInicio = fechaInicio.Value
         m.FechaFinal = fechaFinal.Value
         m.Descripcion = descripcion.Value
-        m.TiempoEstimado = Convert.ToDecimal(tiempoEstimado.Value.Replace(",", "."))
+        m.TiempoEstimado = Convert.ToDecimal(tiempoEstimado.Value.ToString().Replace(",", "."))
         m.Orden = orden.Value
 
         Dim util = New Utilidad()

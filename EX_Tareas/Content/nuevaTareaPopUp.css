@@ -15,14 +15,16 @@
     padding: 10px;
     border: 1px solid #888;
     width: 30%;
-    background-color: whitesmoke;
-    color: dodgerblue;
+    background-color: white;
+    color: black;
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
     position: absolute;
     left: 50%;
     top: 40%;
     transform: translate(-50%, -50%);
+    text-align :left;
+    padding:30px;
 }
 
 .close {
@@ -38,3 +40,7 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+.itype{
+    width:200px;
+}
