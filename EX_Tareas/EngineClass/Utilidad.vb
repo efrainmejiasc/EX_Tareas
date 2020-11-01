@@ -137,6 +137,8 @@ Public Class Utilidad
             idTarea = prefix & "0000" & (numero + 1).ToString()
         ElseIf (numero >= 100 And numero <= 999) Then
             idTarea = prefix & "000" & (numero + 1).ToString()
+        ElseIf (numero >= 1000 And numero <= 9999) Then
+            idTarea = prefix & "00" & (numero + 1).ToString()
         End If
 
         Return idTarea
