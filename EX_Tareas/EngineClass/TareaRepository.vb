@@ -1,8 +1,8 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class PlantillaTareaRepository
+Public Class TareaRepository
 
-    Public Function GetTareasRegistradas() As DataTable
+    Public Function GetTareasRegistradas(ByVal idPlantilla As String) As DataTable
         Dim dt As DataTable = New DataTable
         Dim cnx As String = EngineData.cadenaConexion
         Dim query As String = QueryPlantillaTarea()
@@ -11,6 +11,8 @@ Public Class PlantillaTareaRepository
             conexion.Open()
             Dim comando = New SqlCommand(query, conexion)
             comando.CommandType = CommandType.Text
+            comando.Parameters.Clear()
+            comando.Parameters.AddWithValue("@IdPlantilla", idPlantilla)
             Dim adaptador As SqlDataAdapter = New SqlDataAdapter(comando)
             adaptador.Fill(dt)
             conexion.Close()
@@ -20,7 +22,7 @@ Public Class PlantillaTareaRepository
     End Function
 
     Public Function QueryPlantillaTarea() As String
-        Return "SELECT PT.IdTarea, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
+        Return "SELECT PT.IdTarea,PT.IdPlantilla, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
                        PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
 		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
 		               PT.FechaInicio,PT.FechaFin,PT.Descripcion, CAST(PT.TiempoEstimado AS DECIMAL(10,2)) AS TiempoEstimado,PT.Orden
@@ -28,16 +30,16 @@ Public Class PlantillaTareaRepository
                INNER JOIN A_TareaTipo AS TT ON PT.IdTipoTarea = TT.IdTipoTarea
                INNER JOIN A_TareaEstado AS TE ON PT.IdEstadoTarea =TE.IdEstadoTarea
                INNER JOIN A_TareaTipoServicio AS TTS ON PT.IdTipoServicio = TTS.IdTipoServicio
-               INNER JOIN A_TareaValor AS TV ON PT.IdTareaValor = TV.Id ORDER BY PT.Orden ASC"
+               INNER JOIN A_TareaValor AS TV ON PT.IdTareaValor = TV.Id WHERE PT.IdPlantilla = @IdPlantilla ORDER BY PT.Orden ASC"
     End Function
 
 
 
     Public Function InsertNuevaTarea(ByVal m As NuevaTarea) As Boolean
         Dim cnx As String = EngineData.cadenaConexion
-        Dim query As String = "INSERT INTO A_PlantillaTarea (IdTarea,Tarea,IdTipoTarea,IdEstadoTarea,IdTipoServicio,IdTareaValor,FechaInicio,FechaFin,Descripcion,FechaCrea,FechaModifica,Eliminado,FechaTerminado,TiempoEstimado,Orden)
+        Dim query As String = "INSERT INTO A_PlantillaTarea (IdTarea,IdPlantilla,Tarea,IdTipoTarea,IdEstadoTarea,IdTipoServicio,IdTareaValor,FechaInicio,FechaFin,Descripcion,FechaCrea,FechaModifica,FechaTerminado,TiempoEstimado,Orden)
                                VALUES 
-                                              (@IdTarea,@Tarea,@IdTipoTarea,@IdEstadoTarea,@IdTipoServicio,@IdTareaValor,@FechaInicio,@FechaFin,@Descripcion,@FechaCrea,@FechaModifica,@Eliminado,@FechaTerminado,@TiempoEstimado,@Orden)"
+                                              (@IdTarea,@IdPlantilla,@Tarea,@IdTipoTarea,@IdEstadoTarea,@IdTipoServicio,@IdTareaValor,@FechaInicio,@FechaFin,@Descripcion,@FechaCrea,@FechaModifica,@FechaTerminado,@TiempoEstimado,@Orden)"
         Dim conexion As SqlConnection = New SqlConnection(cnx)
         Dim utilidad As Utilidad = New Utilidad()
         m.IdTarea = utilidad.CreateIdTarea()
@@ -47,6 +49,7 @@ Public Class PlantillaTareaRepository
             comando.CommandType = CommandType.Text
             comando.Parameters.Clear()
             comando.Parameters.AddWithValue("@IdTarea", m.IdTarea)
+            comando.Parameters.AddWithValue("@IdPlantilla", m.IdPlantilla)
             comando.Parameters.AddWithValue("@Tarea", m.Tarea)
             comando.Parameters.AddWithValue("@IdTipoTarea", m.IdTipoTarea)
             comando.Parameters.AddWithValue("@IdEstadoTarea", m.IdEstadoTarea)
@@ -57,7 +60,6 @@ Public Class PlantillaTareaRepository
             comando.Parameters.AddWithValue("@Descripcion", m.Descripcion)
             comando.Parameters.AddWithValue("@FechaCrea", DateTime.Now)
             comando.Parameters.AddWithValue("@FechaModifica", DateTime.Now)
-            comando.Parameters.AddWithValue("@Eliminado", False)
             comando.Parameters.AddWithValue("@FechaTerminado", Convert.ToDateTime("01/01/1900"))
             comando.Parameters.AddWithValue("@TiempoEstimado", m.TiempoEstimado)
             comando.Parameters.AddWithValue("@Orden", OrdenTarea())
@@ -98,8 +100,9 @@ Public Class PlantillaTareaRepository
 
 
     Public Function EliminarTarea(ByVal idTarea As String) As Boolean
-        Dim cnx As String = EngineData.cadenaConexion
-        Dim query As String = "DELETE  A_PlantillaTarea WHERE IdTarea = @IdTarea"
+        Dim result = False
+        Dim cnx = EngineData.cadenaConexion
+        Dim query = "DELETE  A_PlantillaTarea WHERE IdTarea = @IdTarea"
         Dim conexion As SqlConnection = New SqlConnection(cnx)
         Using conexion
             conexion.Open()
@@ -109,8 +112,27 @@ Public Class PlantillaTareaRepository
             comando.Parameters.AddWithValue("@IdTarea", idTarea)
             comando.ExecuteNonQuery()
             conexion.Close()
+            result = True
         End Using
-        Return True
+        Return result
+    End Function
+
+    Public Function EliminarPlantillas(ByVal idPlantilla As String) As Boolean
+        Dim result = False
+        Dim cnx = EngineData.cadenaConexion
+        Dim query = "DELETE  A_PlantillaTarea WHERE IdPlantilla = @IdPlantilla"
+        Dim conexion As SqlConnection = New SqlConnection(cnx)
+        Using conexion
+            conexion.Open()
+            Dim comando = New SqlCommand(query, conexion)
+            comando.CommandType = CommandType.Text
+            comando.Parameters.Clear()
+            comando.Parameters.AddWithValue("@IdPlantilla", idPlantilla)
+            comando.ExecuteNonQuery()
+            conexion.Close()
+            result = True
+        End Using
+        Return result
     End Function
 
 
@@ -125,7 +147,7 @@ Public Class PlantillaTareaRepository
             comando.CommandType = CommandType.Text
             Dim obj As Object = comando.ExecuteScalar()
             conexion.Close()
-            If Not obj Is DBNull.Value Then
+            If Not obj Is DBNull.Value And Not obj Is Nothing Then
                 numero = Convert.ToInt32(obj)
             End If
         End Using
@@ -145,20 +167,21 @@ Public Class PlantillaTareaRepository
             Dim lector As SqlDataReader = comando.ExecuteReader()
             While lector.Read()
                 m.IdTarea = lector.GetString(0)
-                m.Tarea = lector.GetString(1)
-                m.IdTipoTarea = lector.GetInt64(2)
-                m.TipoTarea = lector.GetString(3)
-                m.IdEstadoTarea = lector.GetInt64(4)
-                m.EstadoTarea = lector.GetString(5)
-                m.IdTipoServicio = lector.GetInt64(6)
-                m.TipoServicio = lector.GetString(7)
-                m.IdTareaValor = lector.GetInt64(8)
-                m.TareaValor = lector.GetString(9)
-                m.FechaInicio = lector.GetDateTime(10)
-                m.FechaFinal = lector.GetDateTime(11)
-                m.Descripcion = lector.GetString(12)
-                m.TiempoEstimado = lector.GetDecimal(13)
-                m.Orden = lector.GetInt32(14)
+                m.IdPlantilla = lector.GetString(1)
+                m.Tarea = lector.GetString(2)
+                m.IdTipoTarea = lector.GetInt64(3)
+                m.TipoTarea = lector.GetString(4)
+                m.IdEstadoTarea = lector.GetInt64(5)
+                m.EstadoTarea = lector.GetString(6)
+                m.IdTipoServicio = lector.GetInt64(7)
+                m.TipoServicio = lector.GetString(8)
+                m.IdTareaValor = lector.GetInt32(9)
+                m.TareaValor = lector.GetString(10)
+                m.FechaInicio = lector.GetDateTime(11)
+                m.FechaFinal = lector.GetDateTime(12)
+                m.Descripcion = lector.GetString(13)
+                m.TiempoEstimado = lector.GetDecimal(14)
+                m.Orden = lector.GetInt32(15)
             End While
             conexion.Close()
         End Using
@@ -167,7 +190,7 @@ Public Class PlantillaTareaRepository
     End Function
 
     Public Function QueryPlantillaTareaEspecifica() As String
-        Return "SELECT PT.IdTarea, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
+        Return "SELECT PT.IdTarea, PT.IdPlantilla, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
                        PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
 		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
 		               PT.FechaInicio,PT.FechaFin,PT.Descripcion, CAST(PT.TiempoEstimado AS DECIMAL(10,2)) AS TiempoEstimado,PT.Orden

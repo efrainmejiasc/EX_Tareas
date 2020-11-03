@@ -14,7 +14,7 @@ function MostrarNuevaTareaPopUp(idTareaPlantilla) {
         $('#lblIdTarea').show();
     }
     $('#lblIdTarea').text(idTareaPlantilla);
-    $('#MainContent_idTareaPlantilla').val(idTareaPlantilla)
+    $('#MainContent_id_Tarea').val(idTareaPlantilla)
     $('#nuevaTarea').show();
 }
 
@@ -38,9 +38,10 @@ function SetFechaTarea(val) {
 }
 
 function EditRow(idTareaPlantilla) {
+    console.log(idTareaPlantilla)
     $.ajax({
         method: "POST",
-        url: "Default.aspx/DatosTareaPlantilla",
+        url: "/Views/Actividad/Tareas.aspx/DatosTareaPlantilla",
         data: JSON.stringify({ idTareaPlantilla: idTareaPlantilla }),
         contentType: "application/json; chartset=utf-8",
         dataType: "json",

@@ -22,6 +22,4 @@
 
     Public Shared Property TareaValor As New Dictionary(Of String, Integer)
 
-
-
 End Class

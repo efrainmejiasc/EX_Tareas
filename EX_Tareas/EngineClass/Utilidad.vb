@@ -125,10 +125,48 @@ Public Class Utilidad
         Return Guid.NewGuid()
     End Function
 
+    Public Function CreateIdPlantilla() As String
+        Dim idPlantilla As String = String.Empty
+        Dim prefix As String = "PL"
+        Dim numero As Int32 = NumeroPlantilla()
+        If (numero = 0) Then
+            idPlantilla = prefix & "00000" & "1"
+        ElseIf (numero >= 1 And numero <= 9) Then
+            idPlantilla = prefix & "00000" & (numero + 1).ToString()
+        ElseIf (numero >= 10 And numero <= 99) Then
+            idPlantilla = prefix & "0000" & (numero + 1).ToString()
+        ElseIf (numero >= 100 And numero <= 999) Then
+            idPlantilla = prefix & "000" & (numero + 1).ToString()
+        ElseIf (numero >= 1000 And numero <= 9999) Then
+            idPlantilla = prefix & "00" & (numero + 1).ToString()
+        End If
+
+        Return idPlantilla
+    End Function
+
+
+    Private Function NumeroPlantilla() As Int32
+        Dim cnx As String = EngineData.cadenaConexion
+        Dim query As String = "SELECT MAX(Id) As Numero FROM A_Plantilla"
+        Dim numero As Int32 = 0
+        Dim conexion As SqlConnection = New SqlConnection(cnx)
+        Using conexion
+            conexion.Open()
+            Dim comando = New SqlCommand(query, conexion)
+            comando.CommandType = CommandType.Text
+            Dim obj As Object = comando.ExecuteScalar()
+            conexion.Close()
+            If Not obj Is DBNull.Value And Not obj Is Nothing Then
+                numero = Convert.ToInt32(obj)
+            End If
+        End Using
+        Return numero
+    End Function
+
     Public Function CreateIdTarea() As String
         Dim idTarea As String = String.Empty
         Dim prefix As String = "TA"
-        Dim numero As Int32 = NumeroTareas()
+        Dim numero As Int32 = MaxTarea()
         If (numero = 0) Then
             idTarea = prefix & "00000" & "1"
         ElseIf (numero >= 1 And numero <= 9) Then
@@ -140,13 +178,12 @@ Public Class Utilidad
         ElseIf (numero >= 1000 And numero <= 9999) Then
             idTarea = prefix & "00" & (numero + 1).ToString()
         End If
-
         Return idTarea
     End Function
 
-    Private Function NumeroTareas() As Int32
+    Private Function MaxTarea() As Int32
         Dim cnx As String = EngineData.cadenaConexion
-        Dim query As String = "SELECT COUNT(*) As Numero FROM A_PlantillaTarea"
+        Dim query As String = "SELECT MAX(IdTarea) As IdTarea FROM A_PlantillaTarea"
         Dim numero As Int32 = 0
         Dim conexion As SqlConnection = New SqlConnection(cnx)
         Using conexion
@@ -155,10 +192,15 @@ Public Class Utilidad
             comando.CommandType = CommandType.Text
             Dim obj As Object = comando.ExecuteScalar()
             conexion.Close()
-            If obj <> Nothing Then
-                numero = Convert.ToInt32(obj)
+            If Not obj Is DBNull.Value And Not obj Is Nothing Then
+                Dim strNumero = obj.ToString.Replace("TA", "")
+                numero = Convert.ToInt32(strNumero)
             End If
         End Using
         Return numero
     End Function
+
 End Class
+
+
+

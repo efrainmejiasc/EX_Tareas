@@ -1,5 +1,7 @@
 ﻿Public Class NuevaTarea
 
+    Public Property IdPlantilla As String
+
     Public Property IdTarea As String
     Public Property Tarea As String
 
