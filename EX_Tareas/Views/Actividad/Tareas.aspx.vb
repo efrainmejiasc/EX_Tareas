@@ -24,7 +24,7 @@ Public Class Tareas
     End Sub
 
     Protected Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        Dim m = New NuevaTarea()
+        Dim m = New NuevaTareaModel()
         m.IdPlantilla = id_Plantilla.Value
         m.IdTarea = id_Tarea.Value
         m.Tarea = tarea.Value
@@ -82,9 +82,17 @@ Public Class Tareas
 
     <System.Web.Services.WebMethod()>
     Public Shared Function DatosTareaPlantilla(ByVal idTareaPlantilla As String) As String
-        Dim plantillaTareaRepository = New TareaRepository()
-        Dim tarea = plantillaTareaRepository.GetTarea(idTareaPlantilla)
+        Dim tareaRepository = New TareaRepository()
+        Dim tarea = tareaRepository.GetTarea(idTareaPlantilla)
         Dim result = JsonConvert.SerializeObject(tarea)
+        Return result
+    End Function
+
+    <System.Web.Services.WebMethod()>
+    Public Shared Function EncabezadoPlantilla(ByVal idPlantilla As String) As String
+        Dim plantillaRepository = New PlantillaRepository()
+        Dim plantilla = plantillaRepository.EncabezadoPlantilla(idPlantilla)
+        Dim result = JsonConvert.SerializeObject(plantilla)
         Return result
     End Function
 
@@ -94,5 +102,9 @@ Public Class Tareas
         estadoTarea.SelectedIndex = -1
         tiempoEstimado.Value = 0
         id_Tarea.Value = String.Empty
+    End Sub
+
+    Protected Sub rPlantilla_Click(sender As Object, e As EventArgs) Handles rPlantilla.Click
+        Response.Redirect("~/Default.aspx")
     End Sub
 End Class

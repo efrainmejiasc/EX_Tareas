@@ -81,4 +81,28 @@ Public Class PlantillaRepository
         End Using
         Return resultado
     End Function
+
+    Public Function EncabezadoPlantilla(ByVal idPlantilla As String) As PlantillaModel
+        Dim model = New PlantillaModel()
+        Dim cnx As String = EngineData.cadenaConexion
+        Dim query As String = "SELECT Nombre FROM  A_Plantilla WHERE IdPlantilla = @IdPlantilla"
+        Dim conexion As SqlConnection = New SqlConnection(cnx)
+        Using conexion
+            conexion.Open()
+            Dim comando = New SqlCommand(query, conexion)
+            comando.CommandType = CommandType.Text
+            comando.Parameters.Clear()
+            comando.Parameters.AddWithValue("@IdPlantilla", idPlantilla)
+            Dim lector As SqlDataReader = comando.ExecuteReader()
+            If lector.Read() Then
+                model.NombrePlantilla = lector.GetString(0)
+                model.IdPlantilla = idPlantilla
+            End If
+            conexion.Close()
+        End Using
+        Return model
+    End Function
+
 End Class
+
+

@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     console.log("ready!");
+    EncabezadoPlantilla();
     ActualizarFechas();
 });
 
@@ -63,6 +64,28 @@ function EditRow(idTareaPlantilla) {
         }
     });
 }
+
+function EncabezadoPlantilla() {
+    var idPlantilla = $('#MainContent_id_Plantilla').val();
+    console.log(idPlantilla);
+    $.ajax({
+        method: "POST",
+        url: "/Views/Actividad/Tareas.aspx/EncabezadoPlantilla",
+        data: JSON.stringify({ idPlantilla : idPlantilla }),
+        contentType: "application/json; chartset=utf-8",
+        dataType: "json",
+        success: function (x) {
+            var m = JSON.parse(x.d);
+            $('#MainContent_nombrePlantillaStr').val(m.NombrePlantilla);
+            $('#MainContent_idPlantillaStr').val(m.IdPlantilla);
+        },
+        complete: function () {
+            console.log('EncabezadoPlantilla');
+        }
+    });
+}
+
+
 
 
 

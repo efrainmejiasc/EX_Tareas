@@ -1,4 +1,4 @@
-﻿Public Class NuevaTarea
+﻿Public Class NuevaTareaModel
 
     Public Property IdPlantilla As String
 

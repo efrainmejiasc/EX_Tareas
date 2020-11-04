@@ -35,7 +35,7 @@ Public Class TareaRepository
 
 
 
-    Public Function InsertNuevaTarea(ByVal m As NuevaTarea) As Boolean
+    Public Function InsertNuevaTarea(ByVal m As NuevaTareaModel) As Boolean
         Dim cnx As String = EngineData.cadenaConexion
         Dim query As String = "INSERT INTO A_PlantillaTarea (IdTarea,IdPlantilla,Tarea,IdTipoTarea,IdEstadoTarea,IdTipoServicio,IdTareaValor,FechaInicio,FechaFin,Descripcion,FechaCrea,FechaModifica,FechaTerminado,TiempoEstimado,Orden)
                                VALUES 
@@ -69,7 +69,7 @@ Public Class TareaRepository
         Return True
     End Function
 
-    Public Function ActualizarTarea(ByVal m As NuevaTarea) As Boolean
+    Public Function ActualizarTarea(ByVal m As NuevaTareaModel) As Boolean
         Dim cnx As String = EngineData.cadenaConexion
         Dim query As String = "UPDATE  A_PlantillaTarea SET Tarea = @Tarea, IdTipoTarea = @IdTipoTarea, IdEstadoTarea = @IdEstadoTarea, IdTipoServicio = @IdTipoServicio, IdTareaValor = @IdTareaValor, FechaInicio = @FechaInicio,
                                        FechaFin = @FechaFin, Descripcion = @Descripcion, TiempoEstimado = @TiempoEstimado, Orden = @Orden WHERE IdTarea = @IdTarea"
@@ -154,10 +154,10 @@ Public Class TareaRepository
         Return numero
     End Function
 
-    Public Function GetTarea(ByVal idTarea As String) As NuevaTarea
+    Public Function GetTarea(ByVal idTarea As String) As NuevaTareaModel
         Dim cnx As String = EngineData.cadenaConexion
         Dim conexion As SqlConnection = New SqlConnection(cnx)
-        Dim m As NuevaTarea = New NuevaTarea()
+        Dim m As NuevaTareaModel = New NuevaTareaModel()
         Using conexion
             conexion.Open()
             Dim comando = New SqlCommand(QueryPlantillaTareaEspecifica(), conexion)

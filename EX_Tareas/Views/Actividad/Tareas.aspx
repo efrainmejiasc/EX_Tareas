@@ -53,9 +53,19 @@
         </div>
     </div>
 
+    <div id="encabezadoPlantillaStr" style="padding:10px;">
+        <span >Id Plantilla</span>
+        <input type = "text" id="idPlantillaStr" name="idPlantillaStr" runat="server" class="itype" disabled />
+        <span >Nombre Plantilla</span>
+        <input type ="text" id="nombrePlantillaStr" name="nombrePlantillaStr" runat="server"  class="itype" disabled />
+    </div>
+    
+
      <div  style="width:auto;background-color:whitesmoke;height:50%;">
            <div>
                <input type="button" id="nuevo" name="nuevo" value="Nueva" onclick="MostrarNuevaTareaPopUp('')" style ="background-color:forestgreen;width:150px;border:0px;color:white;"/>
+               <asp:Button ID="rPlantilla" runat="server" Text="Plantillas" style ="background-color:dimgray;width:150px;border:0px;color:white;" />
+
           </div>
         
         <dx:aspxgridview ID="gdvTareas" runat="server" KeyFieldName="IdTarea" Width="100%" 

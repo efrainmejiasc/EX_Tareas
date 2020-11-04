@@ -353,6 +353,7 @@
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="EngineClass\PlantillaRepository.vb" />
+    <Compile Include="Models\PlantillaModel.vb" />
     <Compile Include="Views\Actividad\Tareas.aspx.designer.vb">
       <DependentUpon>Tareas.aspx</DependentUpon>
     </Compile>
@@ -366,7 +367,7 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\NuevaTarea.vb" />
+    <Compile Include="Models\NuevaTareaModel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -131,6 +131,33 @@ Partial Public Class Tareas
     Protected WithEvents BtnGuardar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Control idPlantillaStr.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents idPlantillaStr As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
+    '''Control nombrePlantillaStr.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents nombrePlantillaStr As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
+    '''Control rPlantilla.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents rPlantilla As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Control gdvTareas.
     '''</summary>
     '''<remarks>
