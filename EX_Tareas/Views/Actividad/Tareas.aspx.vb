@@ -7,6 +7,9 @@ Public Class Tareas
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If (Not IsPostBack) Then
             Dim idPlantilla = Request.QueryString("idPlantilla")
+            If String.IsNullOrEmpty(idPlantilla) Then
+                Response.Redirect("~/Default.aspx")
+            End If
             id_Plantilla.Value = idPlantilla
             SetModeEditGrid()
             Dim util = New Utilidad()
@@ -41,7 +44,7 @@ Public Class Tareas
         m.IdTipoServicio = util.IdValue(EngineData.TareaTipoServicio, m.TipoServicio)
         m.IdTareaValor = util.IdValue(EngineData.TareaValor, m.TareaValor)
 
-        If (m.TiempoEstimado > 0) Then
+        If (m.TiempoEstimado > 0 And Not String.IsNullOrEmpty(m.Tarea)) Then
             Dim plantillaTareaRepository = New TareaRepository()
             Dim result As Boolean = If(m.IdTarea = String.Empty, plantillaTareaRepository.InsertNuevaTarea(m), plantillaTareaRepository.ActualizarTarea(m))
         End If
