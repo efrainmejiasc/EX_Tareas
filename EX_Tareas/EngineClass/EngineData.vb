@@ -22,4 +22,9 @@
 
     Public Shared Property TareaValor As New Dictionary(Of String, Integer)
 
+
+    Public Shared Property PostBack As Boolean
+
+    Public Shared Property GdvAsignacion As DataTable
+
 End Class

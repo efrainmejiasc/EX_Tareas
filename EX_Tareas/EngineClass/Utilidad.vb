@@ -200,6 +200,39 @@ Public Class Utilidad
         Return numero
     End Function
 
+    Public Sub RemoverFilaDtAsignacion(ByVal idTarea As String)
+        For Each row As DataRow In EngineData.GdvAsignacion.Rows
+            If (row("IdTarea").ToString() = idTarea) Then
+                row.Delete()
+                Exit For
+            End If
+        Next
+        EngineData.GdvAsignacion.AcceptChanges()
+    End Sub
+
+    Public Sub ActualizarFilaDtAsignacion(ByVal m As TareasPlantillasModel)
+        For Each row As DataRow In EngineData.GdvAsignacion.Rows
+            If (row("IdTarea").ToString() = m.IdTarea) Then
+                row("Tarea") = m.Tarea
+                row("IdTipoTarea") = m.IdTipoTarea
+                row("TipoTarea") = m.TipoTarea
+                row("IdEstadoTarea") = m.IdEstadoTarea
+                row("EstadoTarea") = m.EstadoTarea
+                row("IdTipoServicio") = m.IdTipoServicio
+                row("TipoServicio") = m.TipoServicio
+                row("IdTareaValor") = m.IdTareaValor
+                row("TareaValor") = m.TareaValor
+                row("TiempoEstimado") = m.TiempoEstimado
+                row("Orden") = m.Orden
+                row("Descripcion") = m.Descripcion
+                row("FechaInicio") = m.FechaInicio
+                row("FechaFin") = m.FechaFinal
+                Exit For
+            End If
+        Next
+        EngineData.GdvAsignacion.AcceptChanges()
+    End Sub
+
 End Class
 
 

@@ -295,6 +295,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Scripts\Plantilla\nuevaPlantilla.js" />
+    <Content Include="Scripts\Plan\asignacion.js" />
     <Content Include="Views\Actividad\Tareas.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -354,6 +355,7 @@
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="EngineClass\PlantillaRepository.vb" />
+    <Compile Include="EngineClass\TercerosTareaRepository.vb" />
     <Compile Include="Models\PlantillaModel.vb" />
     <Compile Include="Models\TareasPlantillasModel.vb" />
     <Compile Include="Views\Actividad\Tareas.aspx.designer.vb">

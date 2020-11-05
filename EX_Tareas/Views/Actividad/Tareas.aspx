@@ -16,7 +16,7 @@
              <label id="lblIdTarea"></label><br />
 
             <label>Plantilla</label>
-            <input type="text" id="id_Plantilla" name="idPlantilla" runat="server" class="itype" disabled/><br />
+            <input type="text" id="id_Plantilla" name="id_Plantilla" runat="server" class="itype" disabled/><br />
 
             <label>Tarea</label>
             <input type="text" id="tarea" name="tarea" runat="server" class="itype"/><br />
@@ -63,9 +63,8 @@
 
      <div  style="width:auto;background-color:whitesmoke;height:50%;">
            <div>
-               <input type="button" id="nuevo" name="nuevo" value="Nueva" onclick="MostrarNuevaTareaPopUp('')" style ="background-color:forestgreen;width:150px;border:0px;color:white;"/>
-               <asp:Button ID="rPlantilla" runat="server" Text="Plantillas" style ="background-color:dimgray;width:150px;border:0px;color:white;" />
-
+               <input type="button" id="nuevo" name="nuevo" value="Nueva" onclick="MostrarNuevaTareaPopUp('')" style ="background-color:forestgreen;width:150px;border:0px;color:white;float:left;"/>
+               <asp:Button ID="rPlantilla" runat="server" Text="Plantillas" style ="background-color:dimgray;width:150px;border:0px;color:white;float:right;" />
           </div>
         
         <dx:aspxgridview ID="gdvTareas" runat="server" KeyFieldName="IdTarea" Width="100%" 

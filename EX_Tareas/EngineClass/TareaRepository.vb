@@ -21,7 +21,7 @@ Public Class TareaRepository
         Return dt
     End Function
 
-    Public Function QueryPlantillaTarea() As String
+    Private Function QueryPlantillaTarea() As String
         Return "SELECT PT.IdTarea,PT.IdPlantilla, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
                        PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
 		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
@@ -189,7 +189,7 @@ Public Class TareaRepository
         Return m
     End Function
 
-    Public Function QueryPlantillaTareaEspecifica() As String
+    Private Function QueryPlantillaTareaEspecifica() As String
         Return "SELECT PT.IdTarea, PT.IdPlantilla, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
                        PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
 		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
@@ -233,20 +233,20 @@ Public Class TareaRepository
                INNER JOIN CRM_Pantallas..A_TareaValor AS TV ON PT.IdTareaValor = TV.Id ORDER BY PT.Orden ASC "
     End Function
 
-
-    Public Function GetTareasPlantillas2() As TareasPlantillasModel
+    Public Function GetTareaPlantilla(ByVal idTarea As String) As TareasPlantillasModel
         Dim cnx As String = EngineData.cadenaConexion
         Dim conexion As SqlConnection = New SqlConnection(cnx)
         Dim m = New TareasPlantillasModel()
         Using conexion
             conexion.Open()
-            Dim comando = New SqlCommand(QueryTareasPlantillas(), conexion)
+            Dim comando = New SqlCommand(QueryTareaPlantilla(), conexion)
             comando.CommandType = CommandType.Text
-
+            comando.Parameters.Clear()
+            comando.Parameters.AddWithValue("@IdTarea", idTarea)
             Dim lector As SqlDataReader = comando.ExecuteReader()
             If lector.Read() Then
                 m.IdPlantilla = lector.GetString(0)
-                m.Nombre = lector.GetString(1)
+                m.NombrePlantilla = lector.GetString(1)
                 m.IdTarea = lector.GetString(2)
                 m.Tarea = lector.GetString(3)
                 m.IdTipoTarea = lector.GetInt64(4)
@@ -267,5 +267,19 @@ Public Class TareaRepository
         End Using
 
         Return m
+    End Function
+
+
+    Private Function QueryTareaPlantilla() As String
+        Return "SELECT P.IdPlantilla, P.Nombre, PT.IdTarea, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
+                       PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
+		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
+		               PT.FechaInicio,PT.FechaFin,PT.Descripcion, CAST(PT.TiempoEstimado AS DECIMAL(10,2)) AS TiempoEstimado,PT.Orden 
+	           FROM CRM_Pantallas..A_PLantilla AS P 
+               INNER JOIN CRM_Pantallas..A_PlantillaTarea AS PT ON P.IdPlantilla = PT.IdPlantilla
+               INNER JOIN CRM_Pantallas..A_TareaTipo AS TT ON PT.IdTipoTarea = TT.IdTipoTarea
+               INNER JOIN CRM_Pantallas..A_TareaEstado AS TE ON PT.IdEstadoTarea =TE.IdEstadoTarea
+               INNER JOIN CRM_Pantallas..A_TareaTipoServicio AS TTS ON PT.IdTipoServicio = TTS.IdTipoServicio
+               INNER JOIN CRM_Pantallas..A_TareaValor AS TV ON PT.IdTareaValor = TV.Id   WHERE  PT.IdTarea = @IdTarea"
     End Function
 End Class

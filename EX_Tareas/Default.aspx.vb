@@ -7,8 +7,6 @@ Public Class _Default1
         If Not IsPostBack Then
             SetModeEditGrid()
             CargarGrid()
-        Else
-            Dim postBack = True
         End If
     End Sub
 
@@ -60,5 +58,9 @@ Public Class _Default1
         e.Cancel = True
         gdvPlantillas.CancelEdit()
         CargarGrid()
+    End Sub
+
+    Protected Sub Asignacion_Click(sender As Object, e As EventArgs) Handles Asignacion.Click
+        Response.Redirect("~/Views/Plan/Asignacion.aspx")
     End Sub
 End Class

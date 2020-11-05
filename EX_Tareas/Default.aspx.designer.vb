@@ -41,6 +41,15 @@ Partial Public Class _Default1
     Protected WithEvents BtnGuardar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Control Asignacion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Asignacion As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Control gdvPlantillas.
     '''</summary>
     '''<remarks>

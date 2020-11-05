@@ -18,8 +18,6 @@ Public Class Tareas
             tipoServicio = util.AddItemsListServicios(tipoServicio)
             tareaValor = util.AddItemsListValores(tareaValor)
             CargarGrid(idPlantilla)
-        Else
-            Dim postback = True
         End If
     End Sub
 
@@ -107,4 +105,5 @@ Public Class Tareas
     Protected Sub rPlantilla_Click(sender As Object, e As EventArgs) Handles rPlantilla.Click
         Response.Redirect("~/Default.aspx")
     End Sub
+
 End Class

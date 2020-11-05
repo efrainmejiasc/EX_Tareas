@@ -30,7 +30,8 @@
 
        <div  style="width:auto;background-color:whitesmoke;height:50%;">
            <div>
-               <input type="button" id="nuevo" name="nuevo" value="Nueva" onclick="MostrarNuevaTareaPopUp('')" style ="background-color:forestgreen;width:150px;border:0px;color:white;"/>
+               <input type="button" id="nuevo" name="nuevo" value="Nueva" onclick="MostrarNuevaTareaPopUp('')" style ="background-color:forestgreen;width:150px;border:0px;color:white;float:left;"/>
+                 <asp:Button ID="Asignacion" runat="server" Text="Asignacion" style ="background-color:dimgray;width:150px;border:0px;color:white;float:right;" />
           </div>
         
         <dx:ASPxGridView ID="gdvPlantillas" runat="server" KeyFieldName="IdPlantilla" Width="100%" 
