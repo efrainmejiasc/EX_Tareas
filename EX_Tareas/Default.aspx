@@ -34,7 +34,7 @@
           </div>
         
         <dx:ASPxGridView ID="gdvPlantillas" runat="server" KeyFieldName="IdPlantilla" Width="100%" 
-         AutoGenerateColumns="true"
+         AutoGenerateColumns="false"
          nHeaderFilterFillItems="gdvPlantillas_HeaderFilterFillItems" 
          EnableRowsCache="true" 
          ClientInstanceName="gdvPlantillas"

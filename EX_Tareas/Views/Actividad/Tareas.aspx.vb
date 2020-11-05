@@ -53,8 +53,8 @@ Public Class Tareas
     End Sub
 
     Private Sub CargarGrid(ByVal idPlantilla As String)
-        Dim plantillaTareaRepository = New TareaRepository()
-        Dim dt = plantillaTareaRepository.GetTareasRegistradas(idPlantilla)
+        Dim tareaRepository = New TareaRepository()
+        Dim dt = tareaRepository.GetTareasRegistradas(idPlantilla)
         gdvTareas.DataSource = dt
         gdvTareas.DataBind()
     End Sub

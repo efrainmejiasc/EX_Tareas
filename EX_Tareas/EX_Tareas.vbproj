@@ -337,6 +337,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Views\Plan\Asignacion.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -354,6 +355,7 @@
     </Compile>
     <Compile Include="EngineClass\PlantillaRepository.vb" />
     <Compile Include="Models\PlantillaModel.vb" />
+    <Compile Include="Models\TareasPlantillasModel.vb" />
     <Compile Include="Views\Actividad\Tareas.aspx.designer.vb">
       <DependentUpon>Tareas.aspx</DependentUpon>
     </Compile>
@@ -400,6 +402,13 @@
     </Compile>
     <Compile Include="Views\MasterPage\Site.Mobile.Master.designer.vb">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Plan\Asignacion.aspx.designer.vb">
+      <DependentUpon>Asignacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Plan\Asignacion.aspx.vb">
+      <DependentUpon>Asignacion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

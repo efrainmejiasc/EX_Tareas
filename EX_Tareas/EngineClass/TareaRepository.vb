@@ -165,7 +165,7 @@ Public Class TareaRepository
             comando.Parameters.Clear()
             comando.Parameters.AddWithValue("@IdTarea", idTarea)
             Dim lector As SqlDataReader = comando.ExecuteReader()
-            While lector.Read()
+            If lector.Read() Then
                 m.IdTarea = lector.GetString(0)
                 m.IdPlantilla = lector.GetString(1)
                 m.Tarea = lector.GetString(2)
@@ -182,7 +182,7 @@ Public Class TareaRepository
                 m.Descripcion = lector.GetString(13)
                 m.TiempoEstimado = lector.GetDecimal(14)
                 m.Orden = lector.GetInt32(15)
-            End While
+            End If
             conexion.Close()
         End Using
 
@@ -200,5 +200,72 @@ Public Class TareaRepository
                INNER JOIN A_TareaTipoServicio AS TTS ON PT.IdTipoServicio = TTS.IdTipoServicio
                INNER JOIN A_TareaValor AS TV ON PT.IdTareaValor = TV.Id 
                WHERE PT.IdTarea = @IdTarea ORDER BY PT.Orden ASC"
+    End Function
+
+
+    Public Function GetTareasPlantillas() As DataTable
+        Dim dt As DataTable = New DataTable
+        Dim cnx As String = EngineData.cadenaConexion
+        Dim query As String = QueryTareasPlantillas()
+        Dim conexion As SqlConnection = New SqlConnection(cnx)
+        Using conexion
+            conexion.Open()
+            Dim comando = New SqlCommand(query, conexion)
+            comando.CommandType = CommandType.Text
+            Dim adaptador As SqlDataAdapter = New SqlDataAdapter(comando)
+            adaptador.Fill(dt)
+            conexion.Close()
+        End Using
+
+        Return dt
+    End Function
+
+    Public Function QueryTareasPlantillas() As String
+        Return "SELECT P.IdPlantilla, P.Nombre, PT.IdTarea, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
+                       PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
+		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
+		               PT.FechaInicio,PT.FechaFin,PT.Descripcion, CAST(PT.TiempoEstimado AS DECIMAL(10,2)) AS TiempoEstimado,PT.Orden 
+	           FROM CRM_Pantallas..A_PLantilla AS P 
+               INNER JOIN CRM_Pantallas..A_PlantillaTarea AS PT ON P.IdPlantilla = PT.IdPlantilla
+               INNER JOIN CRM_Pantallas..A_TareaTipo AS TT ON PT.IdTipoTarea = TT.IdTipoTarea
+               INNER JOIN CRM_Pantallas..A_TareaEstado AS TE ON PT.IdEstadoTarea =TE.IdEstadoTarea
+               INNER JOIN CRM_Pantallas..A_TareaTipoServicio AS TTS ON PT.IdTipoServicio = TTS.IdTipoServicio
+               INNER JOIN CRM_Pantallas..A_TareaValor AS TV ON PT.IdTareaValor = TV.Id ORDER BY PT.Orden ASC "
+    End Function
+
+
+    Public Function GetTareasPlantillas2() As TareasPlantillasModel
+        Dim cnx As String = EngineData.cadenaConexion
+        Dim conexion As SqlConnection = New SqlConnection(cnx)
+        Dim m = New TareasPlantillasModel()
+        Using conexion
+            conexion.Open()
+            Dim comando = New SqlCommand(QueryTareasPlantillas(), conexion)
+            comando.CommandType = CommandType.Text
+
+            Dim lector As SqlDataReader = comando.ExecuteReader()
+            If lector.Read() Then
+                m.IdPlantilla = lector.GetString(0)
+                m.Nombre = lector.GetString(1)
+                m.IdTarea = lector.GetString(2)
+                m.Tarea = lector.GetString(3)
+                m.IdTipoTarea = lector.GetInt64(4)
+                m.TipoTarea = lector.GetString(5)
+                m.IdEstadoTarea = lector.GetInt64(6)
+                m.EstadoTarea = lector.GetString(7)
+                m.IdTipoServicio = lector.GetInt64(8)
+                m.TipoServicio = lector.GetString(9)
+                m.IdTareaValor = lector.GetInt32(10)
+                m.TareaValor = lector.GetString(11)
+                m.FechaInicio = lector.GetDateTime(12)
+                m.FechaFinal = lector.GetDateTime(13)
+                m.Descripcion = lector.GetString(14)
+                m.TiempoEstimado = lector.GetDecimal(15)
+                m.Orden = lector.GetInt32(16)
+            End If
+            conexion.Close()
+        End Using
+
+        Return m
     End Function
 End Class

@@ -69,7 +69,7 @@
           </div>
         
         <dx:aspxgridview ID="gdvTareas" runat="server" KeyFieldName="IdTarea" Width="100%" 
-         AutoGenerateColumns="true"
+         AutoGenerateColumns="false"
          nHeaderFilterFillItems="gdvTareas_HeaderFilterFillItems" 
          EnableRowsCache="true" 
          ClientInstanceName="gdvTareas">
