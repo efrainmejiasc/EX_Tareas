@@ -29,4 +29,10 @@
 
     Public Property FechaFinal As String
 
+    Public Property IdEmpresa As String
+
+    Public Property IdProyecto As String
+
+    Public Property IdContrato As String
+
 End Class
