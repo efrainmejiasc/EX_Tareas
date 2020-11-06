@@ -22,6 +22,7 @@ Public Class Asignacion
         If EngineData.PostBack Then
             Dim tareaRepository = New TareaRepository()
             EngineData.GdvAsignacion = tareaRepository.GetTareasPlantillas()
+            EngineData.GdvAsignacion.AcceptChanges()
             gdvAsignacion.DataSource = EngineData.GdvAsignacion
             gdvAsignacion.DataBind()
         End If
@@ -81,6 +82,8 @@ Public Class Asignacion
     End Sub
 
     Protected Sub GuardarDB_Click(sender As Object, e As EventArgs) Handles GuardarDB.Click
+        Dim terceroTareaRepository = New TercerosTareaRepository()
+        Dim resultado = terceroTareaRepository.InsertNuevaTarea("CL0001", "PRY0001", "CON0001")
 
     End Sub
 End Class
