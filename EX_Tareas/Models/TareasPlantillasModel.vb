@@ -35,4 +35,10 @@
 
     Public Property IdContrato As String
 
+    Public Property HoraInicio As TimeSpan
+
+    Public Property HoraFin As TimeSpan
+
+    Public Property FechaTerminado As String
+
 End Class

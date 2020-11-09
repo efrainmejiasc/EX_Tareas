@@ -3,7 +3,6 @@
 });
 
 function MostrarAsignacionPopUp() {
-   
     $('#asignacionFmr').show();
 }
 
@@ -29,6 +28,9 @@ function EditRow(idTarea) {
             $('#MainContent_tipoTarea').val(m.TipoTarea);
             $('#MainContent_estadoTarea').val(m.EstadoTarea);
             $('#MainContent_tipoServicio').val(m.TipoServicio);
+            $('#MainContent_horaInicio').val(m.HoraInicio);
+            $('#MainContent_horaFin').val(m.HoraFin);
+            $('#MainContent_fechaTerminado').val(SetFechaTarea(m.FechaTerminado));
             $('#MainContent_tareaValor').val(m.TareaValor);
             $('#MainContent_fechaInicio').val(SetFechaTarea(m.FechaInicio));
             $('#MainContent_fechaFinal').val(SetFechaTarea(m.FechaFinal));

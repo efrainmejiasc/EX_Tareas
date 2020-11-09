@@ -5,9 +5,9 @@ Public Class TercerosTareaRepository
 
     Public Function InsertNuevaTarea(ByVal Optional idEmpresa As String = "", ByVal Optional idProyecto As String = "", ByVal Optional idContrato As String = "") As Boolean
         Dim cnx As String = EngineData.cadenaConexion
-        Dim query As String = "INSERT INTO A_Tarea (IdTarea,Tarea,Descripcion,IdTipoTarea,IdEmpresa,IdEstadoTarea,FechaInicio,FechaFin,FechaCreacion,FechaModificacion,FechaTerminado,IdProyecto,IdContrato,TiempoEstimado,IdTipoServicio,IdTareaValor,Orden)
+        Dim query As String = "INSERT INTO A_Tarea (IdTarea,Tarea,Descripcion,IdTipoTarea,IdEmpresa,IdEstadoTarea,FechaInicio,FechaFin,HoraInicio,HoraFin,FechaCreacion,FechaModificacion,FechaTerminado,IdProyecto,IdContrato,TiempoEstimado,IdTipoServicio,IdTareaValor,Orden)
                                VALUES 
-                                              (@IdTarea,@Tarea,@Descripcion,@IdTipoTarea,@IdEmpresa,@IdEstadoTarea,@FechaInicio,@FechaFin,@FechaCreacion,@FechaModificacion,@FechaTerminado,@IdProyecto,@IdContrato,@TiempoEstimado,@IdTipoServicio,@IdTareaValor,@Orden)"
+                                              (@IdTarea,@Tarea,@Descripcion,@IdTipoTarea,@IdEmpresa,@IdEstadoTarea,@FechaInicio,@FechaFin,@HoraInicio,@HoraFin,@FechaCreacion,@FechaModificacion,@FechaTerminado,@IdProyecto,@IdContrato,@TiempoEstimado,@IdTipoServicio,@IdTareaValor,@Orden)"
         Dim conexion As SqlConnection = New SqlConnection(cnx)
         Dim utilidad As Utilidad = New Utilidad()
         Using conexion
@@ -24,9 +24,11 @@ Public Class TercerosTareaRepository
                 comando.Parameters.AddWithValue("@IdEstadoTarea", Convert.ToInt32(r("IdEstadoTarea")))
                 comando.Parameters.AddWithValue("@FechaInicio", Convert.ToDateTime(r("FechaInicio")))
                 comando.Parameters.AddWithValue("@FechaFin", Convert.ToDateTime(r("FechaFin")))
+                comando.Parameters.AddWithValue("@HoraInicio", Convert.ToString(r("HoraInicio")))
+                comando.Parameters.AddWithValue("@HoraFin", Convert.ToString(r("HoraFin")))
                 comando.Parameters.AddWithValue("@FechaCreacion", DateTime.Now)
                 comando.Parameters.AddWithValue("@FechaModificacion", DateTime.Now)
-                comando.Parameters.AddWithValue("@FechaTerminado", Convert.ToDateTime("01/01/1900"))
+                comando.Parameters.AddWithValue("@FechaTerminado", Convert.ToDateTime(r("FechaTerminado")))
                 comando.Parameters.AddWithValue("@IdProyecto", idProyecto)
                 comando.Parameters.AddWithValue("@IdContrato", idContrato)
                 comando.Parameters.AddWithValue("@TiempoEstimado", Convert.ToDecimal(r("TiempoEstimado")))

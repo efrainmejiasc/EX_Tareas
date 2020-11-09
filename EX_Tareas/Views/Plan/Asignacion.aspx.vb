@@ -51,6 +51,9 @@ Public Class Asignacion
         m.TipoTarea = tipoTarea.SelectedItem.ToString()
         m.EstadoTarea = estadoTarea.SelectedItem.ToString()
         m.TipoServicio = tipoServicio.SelectedItem.ToString()
+        m.HoraInicio = TimeSpan.Parse(horaInicio.Value)
+        m.HoraFin = TimeSpan.Parse(horaFin.Value)
+        m.FechaTerminado = fechaTerminado.Value
         m.TareaValor = tareaValor.SelectedItem.ToString()
         m.FechaInicio = fechaInicio.Value
         m.FechaFinal = fechaFinal.Value
@@ -84,6 +87,5 @@ Public Class Asignacion
     Protected Sub GuardarDB_Click(sender As Object, e As EventArgs) Handles GuardarDB.Click
         Dim terceroTareaRepository = New TercerosTareaRepository()
         Dim resultado = terceroTareaRepository.InsertNuevaTarea("CL0001", "PRY0001", "CON0001")
-
     End Sub
 End Class

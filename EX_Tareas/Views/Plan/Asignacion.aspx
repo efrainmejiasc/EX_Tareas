@@ -143,6 +143,24 @@
                 </DataItemTemplate>
               </dx:GridViewDataColumn>
 
+               <dx:GridViewDataColumn FieldName="HoraInicio" Caption="Hora Inicio"  VisibleIndex="19">
+                 <DataItemTemplate>
+                      <a> <%# Container.Text %> </a>
+                </DataItemTemplate>
+              </dx:GridViewDataColumn>
+
+              <dx:GridViewDataColumn FieldName="HoraFin" Caption="Hora Fin"  VisibleIndex="20">
+                 <DataItemTemplate>
+                      <a> <%# Container.Text %> </a>
+                </DataItemTemplate>
+              </dx:GridViewDataColumn>
+
+              <dx:GridViewDataColumn FieldName="FechaTerminado" Caption="Fecha Terminado"  VisibleIndex="21">
+               <DataItemTemplate>
+                <a> <%# Container.Text %> </a>
+                </DataItemTemplate>
+              </dx:GridViewDataColumn>
+
           </Columns>
 
           <EditFormLayoutProperties>
@@ -166,44 +184,53 @@
             <div class="awindow-content">
             <span class="close" onclick="OcultarAsignacionPopUp()">&times;</span>
 
-            <label>Id Plantilla</label>
+            <span>Id Plantilla</span>
             <input type="text" id="idPlantilla" name="idPlantilla" runat="server" class="itype" disabled/><br />
 
-            <label>Plantilla</label>
+            <span>Plantilla</span>
             <input type="text" id="nombrePlantilla" name="nombrePlantilla" runat="server" class="itype" disabled/><br />
 
-             <label>Id Tarea</label>
+             <span>Id Tarea</span>
             <input type="text" id="idTarea" name="IdTarea" runat="server" class="itype" disabled/><br />
             <input type="hidden" id="id_Tarea" name="id_Tarea" runat="server" />
 
-            <label>Tarea</label>
+            <span>Tarea</span>
             <input type="text" id="tarea" name="tarea" runat="server" class="itype"/><br />
 
-            <label>Tipo tarea</label>
+            <span>Tipo tarea</span>
             <asp:DropDownList ID="tipoTarea" runat="server" class="itype"></asp:DropDownList><br />
 
-            <label>Estado Tarea</label>
+            <span>Estado Tarea</span>
             <asp:DropDownList ID="estadoTarea" runat="server" class="itype"></asp:DropDownList><br />
 
-            <label>Tipo Servicio</label>
+            <span>Tipo Servicio</span>
             <asp:DropDownList ID="tipoServicio" runat="server" class="itype"></asp:DropDownList><br />
 
-             <label>Tarea Valor</label>
+             <span>Tarea Valor</span>
             <asp:DropDownList ID="tareaValor" runat="server" class="itype"></asp:DropDownList><br />
 
-            <label>Fecha Inicio</label>
+            <span>Fecha Inicio</span>
             <input type="date" id="fechaInicio" name="fechaInicio"  runat="server" class="itype"/><br />
 
-            <label>Fecha Final</label>
+            <span>Fecha Final</span>
             <input type="date" id="fechaFinal" name="fechaFinal"  runat="server" class="itype"/><br />
-               
-            <label>Descripcion</label>
+
+            <span>Hora Inicio</span>
+            <input type="time" id="horaInicio" name="horaInicio"  runat="server" class="itype"/><br />
+
+            <span>Hora Fin</span>
+            <input type="time" id="horaFin" name="horaFin"  runat="server" class="itype"/><br />
+
+            <span>Fecha Finalizado</span>
+            <input type="date" id="fechaTerminado" name="fechaTerminado"  runat="server" class="itype"/><br />
+                
+            <span>Descripcion</span>
             <textarea id="descripcion" name="descripcion" rows="2" cols="50"  resize="none" runat="server" ></textarea><br />
 
-            <label>Tiempo Estimado</label>
+            <span>Tiempo Estimado</span>
             <input type="number" id="tiempoEstimado" name="tiempoEstimado"  runat="server" min="1" max="100000" step="1" class="itype"/> <br />   
 
-            <label id="lblOrden">Orden</label>
+            <span id="lblOrden">Orden</span>
             <input type="number" id="orden" name="orden"  runat="server" min="1" max="100" step="1" class="itype"/> <br /> <br /> 
                 
            <asp:Button ID="BtnGuardar" runat="server" Text="Actualizar" style ="background-color:forestgreen;width:150px;border:0px;color:white;" />

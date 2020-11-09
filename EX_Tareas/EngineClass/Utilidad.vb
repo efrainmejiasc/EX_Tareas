@@ -227,6 +227,9 @@ Public Class Utilidad
                 row("Descripcion") = m.Descripcion
                 row("FechaInicio") = m.FechaInicio
                 row("FechaFin") = m.FechaFinal
+                row("HoraInicio") = m.HoraInicio
+                row("HoraFin") = m.HoraFin
+                row("FechaTerminado") = m.FechaTerminado
                 Exit For
             End If
         Next

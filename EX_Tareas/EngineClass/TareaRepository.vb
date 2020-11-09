@@ -222,7 +222,8 @@ Public Class TareaRepository
 
     Public Function QueryTareasPlantillas() As String
         Return "SELECT P.IdPlantilla, P.Nombre, PT.IdTarea, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
-                       PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
+                       PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, ISNULL(PT.HoraInicio,'0:00') AS HoraInicio,
+                       ISNULL(PT.HoraFin,'0:00') AS HoraFin,PT.FechaTerminado,
 		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
 		               PT.FechaInicio,PT.FechaFin,PT.Descripcion, CAST(PT.TiempoEstimado AS DECIMAL(10,2)) AS TiempoEstimado,PT.Orden 
 	           FROM CRM_Pantallas..A_PLantilla AS P 
@@ -254,14 +255,17 @@ Public Class TareaRepository
                 m.IdEstadoTarea = lector.GetInt64(6)
                 m.EstadoTarea = lector.GetString(7)
                 m.IdTipoServicio = lector.GetInt64(8)
-                m.TipoServicio = lector.GetString(9)
-                m.IdTareaValor = lector.GetInt32(10)
-                m.TareaValor = lector.GetString(11)
-                m.FechaInicio = lector.GetDateTime(12)
-                m.FechaFinal = lector.GetDateTime(13)
-                m.Descripcion = lector.GetString(14)
-                m.TiempoEstimado = lector.GetDecimal(15)
-                m.Orden = lector.GetInt32(16)
+                m.HoraInicio = lector.GetTimeSpan(9)
+                m.HoraFin = lector.GetTimeSpan(10)
+                m.FechaTerminado = lector.GetDateTime(11)
+                m.TipoServicio = lector.GetString(12)
+                m.IdTareaValor = lector.GetInt32(13)
+                m.TareaValor = lector.GetString(14)
+                m.FechaInicio = lector.GetDateTime(15)
+                m.FechaFinal = lector.GetDateTime(16)
+                m.Descripcion = lector.GetString(17)
+                m.TiempoEstimado = lector.GetDecimal(18)
+                m.Orden = lector.GetInt32(19)
             End If
             conexion.Close()
         End Using
@@ -272,7 +276,8 @@ Public Class TareaRepository
 
     Private Function QueryTareaPlantilla() As String
         Return "SELECT P.IdPlantilla, P.Nombre, PT.IdTarea, PT.Tarea, PT.IdTipoTarea, TT.Tipo AS TipoTarea, 
-                       PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio, 
+                       PT.IdEstadoTarea,TE.Estado AS EstadoTarea, PT.IdTipoServicio,ISNULL(PT.HoraInicio,'0:00') AS HoraInicio,
+                       ISNULL(PT.HoraFin,'0:00') AS HoraFin,PT.FechaTerminado, 
 		               TTS.TipoServicio, PT.IdTareaValor, TV.Valor AS TareaValor,
 		               PT.FechaInicio,PT.FechaFin,PT.Descripcion, CAST(PT.TiempoEstimado AS DECIMAL(10,2)) AS TiempoEstimado,PT.Orden 
 	           FROM CRM_Pantallas..A_PLantilla AS P 

@@ -167,6 +167,33 @@ Partial Public Class Asignacion
     Protected WithEvents fechaFinal As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
     
     '''<summary>
+    '''Control horaInicio.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents horaInicio As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    
+    '''<summary>
+    '''Control horaFin.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents horaFin As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    
+    '''<summary>
+    '''Control fechaTerminado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents fechaTerminado As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    
+    '''<summary>
     '''Control descripcion.
     '''</summary>
     '''<remarks>
