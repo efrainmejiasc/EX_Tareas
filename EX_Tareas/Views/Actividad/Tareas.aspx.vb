@@ -102,8 +102,6 @@ Public Class Tareas
         id_Tarea.Value = String.Empty
     End Sub
 
-    Protected Sub rPlantilla_Click(sender As Object, e As EventArgs) Handles rPlantilla.Click
-        Response.Redirect("~/Default.aspx")
-    End Sub
+
 
 End Class

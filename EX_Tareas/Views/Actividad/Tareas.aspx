@@ -64,7 +64,7 @@
      <div  style="width:auto;background-color:whitesmoke;height:50%;">
            <div>
                <input type="button" id="nuevo" name="nuevo" value="Nueva" onclick="MostrarNuevaTareaPopUp('')" style ="background-color:forestgreen;width:150px;border:0px;color:white;float:left;"/>
-               <asp:Button ID="rPlantilla" runat="server" Text="Plantillas" style ="background-color:dimgray;width:150px;border:0px;color:white;float:right;" />
+               <input type="button" id="rPlantilla" name="rPlantilla" value="Plantillas" onclick="IrDefault()"  style ="background-color:dimgray;width:150px;border:0px;color:white;float:right;" />
           </div>
         
         <dx:aspxgridview ID="gdvTareas" runat="server" KeyFieldName="IdTarea" Width="100%" 

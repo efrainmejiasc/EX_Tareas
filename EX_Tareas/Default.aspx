@@ -16,7 +16,7 @@
              <asp:HiddenField ID="idPlantilla" runat="server" />
              <label id="lblIdPlantilla"></label><br />
 
-            <label>Tarea</label><br />
+            <label> Nombre de la plantilla </label><br />
             <input type="text" id="nombrePlantilla" name="nombrePlantilla" runat="server" class="itype"/><br />
 
             <div style="text-align:center;">

@@ -86,6 +86,11 @@ function EncabezadoPlantilla() {
 }
 
 
+function IrDefault() {
+    window.location.href = "/Default.aspx";
+}
+
+
 
 
 
